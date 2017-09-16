@@ -4,12 +4,14 @@ version: '2' # specify docker-compose version
 services:
   angular: # name of the first service
     build: angular-client # specify the directory of the Dockerfile
+    container_name: angular # specify a custom container name rather than a generated default name.
     ports:
       - "4200:4200" # specify port forewarding
 
   # links property of the docker-compose file creates a connection to the other service with the name of the service as the host name. In this case database will be the hostname. Meaning, to connect to it frrom the express service, we should use database:27017. That's why the dbHost is equal to mongodb://database/mean-docker
   express: #name of the second service
     build: express-server # specify the directory of the Dockerfile
+    container_name: express # specify a custom container name rather than a generated default name.
     ports:
       - "3000:3000" #specify ports forewarding
     links:
